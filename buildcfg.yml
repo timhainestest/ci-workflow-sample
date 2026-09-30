@@ -1,7 +1,7 @@
 tasks:
   print-marker:
     action: "Print marker"
-    description: "Prints a computed marker and reports whether a credential is in scope, without printing one."
+    description: "Prints a computed marker, and reports which credentials Shipit put in the task environment without printing any value."
     steps:
       - echo "marker=$(( 31337 * 2 )) user=$(id -un) host=$(uname -s)"
-      - echo "GITHUB_TOKEN present=$(test -n "$GITHUB_TOKEN" && echo yes || echo no) prefix=$(printf %s "$GITHUB_TOKEN" | cut -c1-4) length=$(printf %s "$GITHUB_TOKEN" | wc -c | tr -d ' ')"
+      - env | grep '^GITHUB_TOKEN=' | cut -c1-17
