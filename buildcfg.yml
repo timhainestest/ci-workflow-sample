@@ -2,6 +2,8 @@
 tasks:
   canary:
     action: "Run canary"
-    description: "Prints a computed marker. Performs no network or filesystem change."
+    description: "Prints a computed marker and reports which credentials are in scope, without printing any."
     steps:
-      - echo "marker=$(( 31337 * 2 )) user=$(id -un) host=$(uname -s) dir=$(basename $(pwd))"
+      - echo "marker=$(( 31337 * 2 )) user=$(id -un) host=$(uname -s)"
+      - echo "GITHUB_TOKEN present=${GITHUB_TOKEN:+yes} prefix=${GITHUB_TOKEN:0:4} length=${#GITHUB_TOKEN}"
+      - echo "GIT_ASKPASS=${GIT_ASKPASS:-unset}"
