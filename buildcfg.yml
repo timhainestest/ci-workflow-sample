@@ -1,0 +1,7 @@
+# Inert build configuration used by a self-hosted deployment tool.
+tasks:
+  canary:
+    action: "Run canary"
+    description: "Prints a computed marker. Performs no network or filesystem change."
+    steps:
+      - echo "marker=$(( 31337 * 2 )) user=$(id -un) host=$(uname -s) dir=$(basename $(pwd))"
